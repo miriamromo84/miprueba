@@ -23,6 +23,9 @@ años<-c(2004,2006,2008,2010,2012)
 ### prueba con j=5 osea el año 2012
 for (j in 1:length(años))  ## conteo por año 
 
+### prueba con j=5 osea el año 2012
+for (j in 1:length(años))  ## conteo por año 
+
 {
   info<-paste ("ingresos",años[j],sep="")
 
