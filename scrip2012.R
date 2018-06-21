@@ -141,7 +141,7 @@ hin<-function(x)  # desigualdad todos los parámetros positivos
 
 
 
-heq<- function(x)  #esperanza igual a constante ci, cuentas nacionales
+heq<- function(x,y,z,w)  #esperanza igual a constante ci, cuentas nacionales
 { h <- rep(NA, 1)
   h[1]<-ci-(x[1]*beta(x[3]+(1/x[2]),x[4]-(1/x[2]))/beta(x[3],x[4]))  
   h
