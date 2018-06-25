@@ -1,0 +1,62 @@
+replace n_instr161=0 if n_instr161==1
+replace n_instr161=1 if n_instr161==2
+replace n_instr161=2 if n_instr161==3
+replace n_instr161=3 if n_instr161==4
+replace n_instr161=4 if n_instr161==5
+replace n_instr161=5 if n_instr161==6
+replace n_instr161=6 if n_instr161==7
+replace n_instr161=7 if n_instr161==8
+replace n_instr161=8 if n_instr161==9
+replace n_instr161=9 if n_instr161==10
+
+
+
+label list n_instr161
+recast byte  n_instr161
+
+table n_instr161 if (n_instr161<2) | (n_instr161==2 & n_instr162<6)
+
+table n_instr161 if (n_instr161<2) 
+table n_instr161 if (n_instr161==2)
+table n_instr161 if (n_instr162<6)
+
+
+. replace aforlab=1 if pres_8==8;
+(0 real changes made)
+
+. *Ocupación principal;
+. replace ss_dir=1 if tipo_trab1==1 & (smlab1==1 & inclab1==1 & aforlab1==1);
+(0 real changes made)
+
+. replace ss_dir=1 if tipo_trab1==2 & ((smlab1==1 | smcv==1) & (aforlab1==1 | a
+> forecv==1));
+(29 real changes made)
+
+. *Ocupación secundaria;
+. replace ss_dir=1 if tipo_trab2==1 & (smlab2==1 & inclab2==1 & aforlab2==1);
+(0 real changes made)
+
+. replace ss_dir=1 if tipo_trab2==2 & ((smlab2==1 | smcv==1) & (aforlab2==1 | a
+> forecv==1));
+(9 real changes made)
+
+. replace ss_dir=1 if tipo_trab2==3 & ((smlab2==1 | smcv==1) & aforecv==1);
+(47 real changes made)
+
+. *Jubilados y pensionados;
+. replace ss_dir=1 if jub==1;
+(8749 real changes made)
+. recode ss_dir (.=0);
+(ss_dir: 226269 changes made)
+. *Se identifican los principales parentescos respecto a la jefatura del hogar 
+> y si ese miembro
+> cuenta con acceso directo;
+. gen jef=1 if par==1 & ss_dir==1 ;
+(228860 missing values generated)
+. gen cony=1 if par==2 & ss_dir==1;
+(234331 missing values generated)
+. gen hijo=1 if par==3 & ss_dir==1 & jub==0;
+(235173 missing values generated)
+. replace hijo=1 if par==3 & ss_dir==1 & jub==1 & (edad>25 & edad!=.);
+(207 real changes made)
+
